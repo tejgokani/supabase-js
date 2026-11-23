@@ -256,6 +256,15 @@ export type SupabaseClientOptions<SchemaName> = {
      * Optional headers for initializing the client.
      */
     headers?: Record<string, string>
+    /**
+     * Parameters appended to the `X-Client-Info` header, for libraries built on supabase-js that
+     * want to identify themselves without replacing the SDK's own value. Each entry is sent as
+     * `; key=value`, for example `{ via: 'my-lib/1.2.0' }`.
+     *
+     * Keys are lowercase kebab-case and cannot be one the SDK sets itself (such as `runtime`).
+     * Values are trimmed and must not be empty. `createClient` throws on an invalid entry.
+     */
+    clientInfo?: Record<string, string>
   }
   /**
    * Optional function for using a third-party authentication system with
